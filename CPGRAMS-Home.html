@@ -1,0 +1,2583 @@
+<!DOCTYPE html>
+<!-- saved from url=(0024)https://pgportal.gov.in/ -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>CPGRAMS-Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta http-equiv="Cache-Control" content="no-store">
+  <link rel="shortcut icon" href="https://pgportal.gov.in/Images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://pgportal.gov.in/Images/favicon.ico" type="image/x-icon">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/NoJScript" />
+  </noscript>
+  <meta name="keywords" content="CPGRAMS, Public Grievance, Grievance, Complaint to GOI, Government Complaint">
+  <meta name="Description" content="CPGRAMS Public Grievance Portal of GoI.">
+  <link href="./CPGRAMS-Home_files/styleLayout.css" rel="stylesheet">
+
+  <script src="./CPGRAMS-Home_files/jquery.js"></script>
+
+
+
+  <script src="./CPGRAMS-Home_files/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">-->
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="./CPGRAMS-Home_files/ionicons.min.css">
+  <script src="./CPGRAMS-Home_files/bootstrap.js"></script>
+
+
+
+
+
+  <style>
+    #chatbot {
+      z-index: 100;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 70px;
+      /* Width for the round chatbot */
+      height: 70px;
+      /* Height for the round chatbot */
+      border-radius: 50%;
+      /* Make it round */
+      background-color: #731333;
+      /* Chatbot icon background color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      /* Change cursor on hover */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      color: white;
+      font-size: 30px;
+      transition: background-color 0.3s;
+    }
+
+    #chat-window {
+      z-index: 100;
+      position: fixed;
+      /* Position it above the chatbot */
+      bottom: 90px;
+      /* Distance from the chatbot */
+      right: 20px;
+      width: 320px;
+      /* Width of the chat window */
+      border-radius: 10px;
+      background-color: white;
+      /* Background color of the chat window */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      /* Ensures it appears above other elements */
+    }
+
+    .hidden-chat {
+      display: none;
+      /* Hide the chat window by default */
+    }
+
+    #chat-header {
+      background-color: #731333;
+      /* Header color */
+      color: white;
+      /* Header text color */
+      padding: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    #chat-title {
+      font-weight: bold;
+      /* Make title bold */
+    }
+
+    #chat-status {
+      font-size: 14px;
+      /* Smaller font for status */
+    }
+
+    #chat-messages {
+      padding: 10px;
+      max-height: 300px;
+      /* Max height for message area */
+      overflow-y: auto;
+      /* Scroll if messages exceed height */
+
+    }
+
+    .message {
+      margin-bottom: 10px;
+      /* Space between messages */
+      background-color: #007bff;
+      /* Background for messages */
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .option-button {
+      background-color: #007bff;
+      /* Button background */
+      color: white;
+      /* Button text color */
+      border: none;
+      /* No border */
+      border-radius: 5px;
+      /* Rounded corners */
+      padding: 8px 12px;
+      /* Padding for buttons */
+      margin-right: 5px;
+      /* Space between buttons */
+      cursor: pointer;
+      /* Pointer on hover */
+      transition: background-color 0.2s;
+      /* Transition for hover effect */
+    }
+
+    .option-button:hover {
+      background-color: #0056b3;
+      /* Darker shade on hover */
+    }
+
+    .option-button.active {
+      background-color: #0056b3;
+      /* Different shade for active button */
+    }
+
+    #user-input {
+      width: calc(100% - 50px);
+      /* Width of the input field */
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 10px;
+      /* Margin for input field */
+    }
+
+    #send-button {
+      background-color: #007bff;
+      /* Send button background */
+      color: white;
+      /* Send button text color */
+      border: none;
+      /* No border */
+      border-radius: 50%;
+      /* Round send button */
+      width: 40px;
+      /* Button width */
+      height: 40px;
+      /* Button height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      /* Pointer on hover */
+      position: absolute;
+      /* Position relative to input */
+      right: 10px;
+      /* Position it to the right */
+      bottom: 10px;
+      /* Position it above the input */
+    }
+
+
+
+
+    .button {
+      float: right;
+      background-size: 100% 100%;
+      cursor: pointer;
+      border: none;
+      /*noness*/
+      width: 200px;
+      height: 200px;
+      vertical-align: middle;
+      /* align the text vertically centered */
+    }
+
+    .emailMsg {
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+      margin: 0;
+      padding: 5px;
+      background: #6e0747;
+      text-align: center;
+    }
+
+    .layoutSection {
+      background-color: #3F51B5;
+      color: rgb(255, 255, 255);
+      opacity: 5;
+      border-radius: 10px;
+      transition: all 1s ease-in-out;
+    }
+  </style>
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="./CPGRAMS-Home_files/js.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+
+    //gtag('js', new Date());
+
+    /*gtag('config', 'G-RGTF69CSVF');*/
+
+    //gtag('config', 'G-RGTF69CSVF', {
+    //    cookie_flags: 'max-age=7200;secure;samesite=Lax'
+    //});
+
+  </script>
+  <style type="text/css">
+    body.swal2-shown:not(.swal2-no-backdrop) {
+      overflow-y: hidden;
+    }
+
+    body.swal2-toast-shown {
+      overflow-y: auto;
+    }
+
+    body.swal2-toast-shown.swal2-has-input>.swal2-container>.swal2-toast {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+
+    body.swal2-toast-shown.swal2-has-input>.swal2-container>.swal2-toast .swal2-icon {
+      margin: 0 0 15px;
+    }
+
+    body.swal2-toast-shown.swal2-has-input>.swal2-container>.swal2-toast .swal2-buttonswrapper {
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      -ms-flex-item-align: stretch;
+      align-self: stretch;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+    }
+
+    body.swal2-toast-shown.swal2-has-input>.swal2-container>.swal2-toast .swal2-loading {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
+    body.swal2-toast-shown.swal2-has-input>.swal2-container>.swal2-toast .swal2-input {
+      height: 32px;
+      font-size: 14px;
+      margin: 5px auto;
+    }
+
+    body.swal2-toast-shown>.swal2-container {
+      position: fixed;
+      background-color: transparent;
+    }
+
+    body.swal2-toast-shown>.swal2-container.swal2-shown {
+      background-color: transparent;
+    }
+
+    body.swal2-toast-shown>.swal2-container.swal2-top {
+      top: 0;
+      left: 50%;
+      bottom: auto;
+      right: auto;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    body.swal2-toast-shown>.swal2-container.swal2-top-right {
+      top: 0;
+      left: auto;
+      bottom: auto;
+      right: 0;
+    }
+
+    body.swal2-toast-shown>.swal2-container.swal2-top-left {
+      top: 0;
+      left: 0;
+      bottom: auto;
+      right: auto;
+    }
+
+    body.swal2-toast-shown>.swal2-container.swal2-center-left {
+      top: 50%;
+      left: 0;
+      bottom: auto;
+      right: auto;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    body.swal2-toast-shown>.swal2-container.swal2-center {
+      top: 50%;
+      left: 50%;
+      bottom: auto;
+      right: auto;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    body.swal2-toast-shown>.swal2-container.swal2-center-right {
+      top: 50%;
+      left: auto;
+      bottom: auto;
+      right: 0;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    body.swal2-toast-shown>.swal2-container.swal2-bottom-left {
+      top: auto;
+      left: 0;
+      bottom: 0;
+      right: auto;
+    }
+
+    body.swal2-toast-shown>.swal2-container.swal2-bottom {
+      top: auto;
+      left: 50%;
+      bottom: 0;
+      right: auto;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    body.swal2-toast-shown>.swal2-container.swal2-bottom-right {
+      top: auto;
+      left: auto;
+      bottom: 0;
+      right: 0;
+    }
+
+    body.swal2-iosfix {
+      position: fixed;
+      left: 0;
+      right: 0;
+    }
+
+    body.swal2-no-backdrop>.swal2-shown {
+      top: auto;
+      bottom: auto;
+      left: auto;
+      right: auto;
+      background-color: transparent;
+    }
+
+    body.swal2-no-backdrop>.swal2-shown>.swal2-modal {
+      -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+
+    body.swal2-no-backdrop>.swal2-shown.swal2-top {
+      top: 0;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    body.swal2-no-backdrop>.swal2-shown.swal2-top-left {
+      top: 0;
+      left: 0;
+    }
+
+    body.swal2-no-backdrop>.swal2-shown.swal2-top-right {
+      top: 0;
+      right: 0;
+    }
+
+    body.swal2-no-backdrop>.swal2-shown.swal2-center {
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    body.swal2-no-backdrop>.swal2-shown.swal2-center-left {
+      top: 50%;
+      left: 0;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    body.swal2-no-backdrop>.swal2-shown.swal2-center-right {
+      top: 50%;
+      right: 0;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    body.swal2-no-backdrop>.swal2-shown.swal2-bottom {
+      bottom: 0;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    body.swal2-no-backdrop>.swal2-shown.swal2-bottom-left {
+      bottom: 0;
+      left: 0;
+    }
+
+    body.swal2-no-backdrop>.swal2-shown.swal2-bottom-right {
+      bottom: 0;
+      right: 0;
+    }
+
+    .swal2-container {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      position: fixed;
+      padding: 10px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: transparent;
+      z-index: 1060;
+    }
+
+    .swal2-container.swal2-top {
+      -webkit-box-align: start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+    }
+
+    .swal2-container.swal2-top-left {
+      -webkit-box-align: start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+    }
+
+    .swal2-container.swal2-top-right {
+      -webkit-box-align: start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+    }
+
+    .swal2-container.swal2-center {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .swal2-container.swal2-center-left {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+    }
+
+    .swal2-container.swal2-center-right {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+    }
+
+    .swal2-container.swal2-bottom {
+      -webkit-box-align: end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+    }
+
+    .swal2-container.swal2-bottom-left {
+      -webkit-box-align: end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+    }
+
+    .swal2-container.swal2-bottom-right {
+      -webkit-box-align: end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+    }
+
+    .swal2-container.swal2-grow-fullscreen>.swal2-modal {
+      display: -webkit-box !important;
+      display: -ms-flexbox !important;
+      display: flex !important;
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      -ms-flex-item-align: stretch;
+      align-self: stretch;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
+    .swal2-container.swal2-grow-row>.swal2-modal {
+      display: -webkit-box !important;
+      display: -ms-flexbox !important;
+      display: flex !important;
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      -ms-flex-line-pack: center;
+      align-content: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
+    .swal2-container.swal2-grow-column {
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+
+    .swal2-container.swal2-grow-column.swal2-top,
+    .swal2-container.swal2-grow-column.swal2-center,
+    .swal2-container.swal2-grow-column.swal2-bottom {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .swal2-container.swal2-grow-column.swal2-top-left,
+    .swal2-container.swal2-grow-column.swal2-center-left,
+    .swal2-container.swal2-grow-column.swal2-bottom-left {
+      -webkit-box-align: start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+    }
+
+    .swal2-container.swal2-grow-column.swal2-top-right,
+    .swal2-container.swal2-grow-column.swal2-center-right,
+    .swal2-container.swal2-grow-column.swal2-bottom-right {
+      -webkit-box-align: end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+    }
+
+    .swal2-container.swal2-grow-column>.swal2-modal {
+      display: -webkit-box !important;
+      display: -ms-flexbox !important;
+      display: flex !important;
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      -ms-flex-line-pack: center;
+      align-content: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
+    .swal2-container:not(.swal2-top):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-left):not(.swal2-bottom-right)>.swal2-modal {
+      margin: auto;
+    }
+
+    @media all and (-ms-high-contrast: none),
+    (-ms-high-contrast: active) {
+      .swal2-container .swal2-modal {
+        margin: 0 !important;
+      }
+    }
+
+    .swal2-container.swal2-fade {
+      -webkit-transition: background-color .1s;
+      transition: background-color .1s;
+    }
+
+    .swal2-container.swal2-shown {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .swal2-popup {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      background-color: #fff;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      border-radius: 5px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+      display: none;
+      position: relative;
+      max-width: 100%;
+    }
+
+    .swal2-popup.swal2-toast {
+      width: 300px;
+      padding: 0 15px;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      overflow-y: hidden;
+      -webkit-box-shadow: 0 0 10px #d9d9d9;
+      box-shadow: 0 0 10px #d9d9d9;
+    }
+
+    .swal2-popup.swal2-toast .swal2-title {
+      max-width: 300px;
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .swal2-popup.swal2-toast .swal2-content {
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .swal2-popup.swal2-toast .swal2-icon {
+      width: 32px;
+      height: 32px;
+      margin: 0 15px 0 0;
+    }
+
+    .swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring {
+      width: 32px;
+      height: 32px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-icon.swal2-info,
+    .swal2-popup.swal2-toast .swal2-icon.swal2-warning,
+    .swal2-popup.swal2-toast .swal2-icon.swal2-question {
+      font-size: 26px;
+      line-height: 32px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-icon.swal2-error [class^='swal2-x-mark-line'] {
+      top: 14px;
+      width: 22px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-icon.swal2-error [class^='swal2-x-mark-line'][class$='left'] {
+      left: 5px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-icon.swal2-error [class^='swal2-x-mark-line'][class$='right'] {
+      right: 5px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-buttonswrapper {
+      margin: 0 0 0 5px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-styled {
+      margin: 0 0 0 5px;
+      padding: 5px 10px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-styled:focus {
+      -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 2px rgba(50, 100, 150, 0.4);
+      box-shadow: 0 0 0 1px #fff, 0 0 0 2px rgba(50, 100, 150, 0.4);
+    }
+
+    .swal2-popup.swal2-toast .swal2-validationerror {
+      width: 100%;
+      margin: 5px -20px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-success {
+      border-color: #a5dc86;
+    }
+
+    .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-circular-line'] {
+      border-radius: 50%;
+      position: absolute;
+      width: 32px;
+      height: 64px;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-circular-line'][class$='left'] {
+      border-radius: 64px 0 0 64px;
+      top: -4px;
+      left: -15px;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      -webkit-transform-origin: 32px 32px;
+      transform-origin: 32px 32px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-circular-line'][class$='right'] {
+      border-radius: 0 64px 64px 0;
+      top: -5px;
+      left: 14px;
+      -webkit-transform-origin: 0 32px;
+      transform-origin: 0 32px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-success .swal2-success-ring {
+      width: 32px;
+      height: 32px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-success .swal2-success-fix {
+      width: 7px;
+      height: 90px;
+      left: 28px;
+      top: 8px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-line'] {
+      height: 5px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-line'][class$='tip'] {
+      width: 12px;
+      left: 3px;
+      top: 18px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-line'][class$='long'] {
+      width: 22px;
+      right: 3px;
+      top: 15px;
+    }
+
+    .swal2-popup.swal2-toast .swal2-animate-success-line-tip {
+      -webkit-animation: animate-toast-success-tip .75s;
+      animation: animate-toast-success-tip .75s;
+    }
+
+    .swal2-popup.swal2-toast .swal2-animate-success-line-long {
+      -webkit-animation: animate-toast-success-long .75s;
+      animation: animate-toast-success-long .75s;
+    }
+
+    .swal2-popup:focus {
+      outline: none;
+    }
+
+    .swal2-popup.swal2-loading {
+      overflow-y: hidden;
+    }
+
+    .swal2-popup .swal2-title {
+      color: #595959;
+      font-size: 30px;
+      text-align: center;
+      font-weight: 600;
+      text-transform: none;
+      position: relative;
+      margin: 0 0 .4em;
+      padding: 0;
+      display: block;
+      word-wrap: break-word;
+    }
+
+    .swal2-popup .swal2-buttonswrapper {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .swal2-popup .swal2-buttonswrapper:not(.swal2-loading) .swal2-styled[disabled] {
+      opacity: .4;
+      cursor: no-drop;
+    }
+
+    .swal2-popup .swal2-buttonswrapper.swal2-loading .swal2-styled.swal2-confirm {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      border: 4px solid transparent;
+      border-color: transparent;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      margin: 7.5px;
+      vertical-align: top;
+      background-color: transparent !important;
+      color: transparent;
+      cursor: default;
+      border-radius: 100%;
+      -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
+      animation: rotate-loading 1.5s linear 0s infinite normal;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .swal2-popup .swal2-buttonswrapper.swal2-loading .swal2-styled.swal2-cancel {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+
+    .swal2-popup .swal2-buttonswrapper.swal2-loading :not(.swal2-styled).swal2-confirm::after {
+      display: inline-block;
+      content: '';
+      margin-left: 5px;
+      vertical-align: -1px;
+      height: 15px;
+      width: 15px;
+      border: 3px solid #999999;
+      -webkit-box-shadow: 1px 1px 1px #fff;
+      box-shadow: 1px 1px 1px #fff;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
+      animation: rotate-loading 1.5s linear 0s infinite normal;
+    }
+
+    .swal2-popup .swal2-styled {
+      border: 0;
+      border-radius: 3px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 500;
+      margin: 15px 5px 0;
+      padding: 10px 32px;
+    }
+
+    .swal2-popup .swal2-styled:focus {
+      outline: none;
+      -webkit-box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(50, 100, 150, 0.4);
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(50, 100, 150, 0.4);
+    }
+
+    .swal2-popup .swal2-image {
+      margin: 20px auto;
+      max-width: 100%;
+    }
+
+    .swal2-popup .swal2-close {
+      background: transparent;
+      border: 0;
+      margin: 0;
+      padding: 0;
+      width: 38px;
+      height: 40px;
+      font-size: 36px;
+      line-height: 40px;
+      font-family: serif;
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      cursor: pointer;
+      color: #cccccc;
+      -webkit-transition: color .1s ease;
+      transition: color .1s ease;
+    }
+
+    .swal2-popup .swal2-close:hover {
+      color: #d55;
+    }
+
+    .swal2-popup>.swal2-input,
+    .swal2-popup>.swal2-file,
+    .swal2-popup>.swal2-textarea,
+    .swal2-popup>.swal2-select,
+    .swal2-popup>.swal2-radio,
+    .swal2-popup>.swal2-checkbox {
+      display: none;
+    }
+
+    .swal2-popup .swal2-content {
+      font-size: 18px;
+      text-align: center;
+      font-weight: 300;
+      position: relative;
+      float: none;
+      margin: 0;
+      padding: 0;
+      line-height: normal;
+      color: #545454;
+      word-wrap: break-word;
+    }
+
+    .swal2-popup .swal2-input,
+    .swal2-popup .swal2-file,
+    .swal2-popup .swal2-textarea,
+    .swal2-popup .swal2-select,
+    .swal2-popup .swal2-radio,
+    .swal2-popup .swal2-checkbox {
+      margin: 20px auto;
+    }
+
+    .swal2-popup .swal2-input,
+    .swal2-popup .swal2-file,
+    .swal2-popup .swal2-textarea {
+      width: 100%;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      font-size: 18px;
+      border-radius: 3px;
+      border: 1px solid #d9d9d9;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06);
+      -webkit-transition: border-color .3s, -webkit-box-shadow .3s;
+      transition: border-color .3s, -webkit-box-shadow .3s;
+      transition: border-color .3s, box-shadow .3s;
+      transition: border-color .3s, box-shadow .3s, -webkit-box-shadow .3s;
+    }
+
+    .swal2-popup .swal2-input.swal2-inputerror,
+    .swal2-popup .swal2-file.swal2-inputerror,
+    .swal2-popup .swal2-textarea.swal2-inputerror {
+      border-color: #f27474 !important;
+      -webkit-box-shadow: 0 0 2px #f27474 !important;
+      box-shadow: 0 0 2px #f27474 !important;
+    }
+
+    .swal2-popup .swal2-input:focus,
+    .swal2-popup .swal2-file:focus,
+    .swal2-popup .swal2-textarea:focus {
+      outline: none;
+      border: 1px solid #b4dbed;
+      -webkit-box-shadow: 0 0 3px #c4e6f5;
+      box-shadow: 0 0 3px #c4e6f5;
+    }
+
+    .swal2-popup .swal2-input::-webkit-input-placeholder,
+    .swal2-popup .swal2-file::-webkit-input-placeholder,
+    .swal2-popup .swal2-textarea::-webkit-input-placeholder {
+      color: #cccccc;
+    }
+
+    .swal2-popup .swal2-input:-ms-input-placeholder,
+    .swal2-popup .swal2-file:-ms-input-placeholder,
+    .swal2-popup .swal2-textarea:-ms-input-placeholder {
+      color: #cccccc;
+    }
+
+    .swal2-popup .swal2-input::-ms-input-placeholder,
+    .swal2-popup .swal2-file::-ms-input-placeholder,
+    .swal2-popup .swal2-textarea::-ms-input-placeholder {
+      color: #cccccc;
+    }
+
+    .swal2-popup .swal2-input::placeholder,
+    .swal2-popup .swal2-file::placeholder,
+    .swal2-popup .swal2-textarea::placeholder {
+      color: #cccccc;
+    }
+
+    .swal2-popup .swal2-range input {
+      float: left;
+      width: 80%;
+    }
+
+    .swal2-popup .swal2-range output {
+      float: right;
+      width: 20%;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .swal2-popup .swal2-range input,
+    .swal2-popup .swal2-range output {
+      height: 43px;
+      line-height: 43px;
+      vertical-align: middle;
+      margin: 20px auto;
+      padding: 0;
+    }
+
+    .swal2-popup .swal2-input {
+      height: 43px;
+      padding: 0 12px;
+    }
+
+    .swal2-popup .swal2-input[type='number'] {
+      max-width: 150px;
+    }
+
+    .swal2-popup .swal2-file {
+      font-size: 20px;
+    }
+
+    .swal2-popup .swal2-textarea {
+      height: 108px;
+      padding: 12px;
+    }
+
+    .swal2-popup .swal2-select {
+      color: #545454;
+      font-size: inherit;
+      padding: 5px 10px;
+      min-width: 40%;
+      max-width: 100%;
+    }
+
+    .swal2-popup .swal2-radio {
+      border: 0;
+    }
+
+    .swal2-popup .swal2-radio label:not(:first-child) {
+      margin-left: 20px;
+    }
+
+    .swal2-popup .swal2-radio input,
+    .swal2-popup .swal2-radio span {
+      vertical-align: middle;
+    }
+
+    .swal2-popup .swal2-radio input {
+      margin: 0 3px 0 0;
+    }
+
+    .swal2-popup .swal2-checkbox {
+      color: #545454;
+    }
+
+    .swal2-popup .swal2-checkbox input,
+    .swal2-popup .swal2-checkbox span {
+      vertical-align: middle;
+    }
+
+    .swal2-popup .swal2-validationerror {
+      background-color: #f0f0f0;
+      margin: 0 -20px;
+      overflow: hidden;
+      padding: 10px;
+      color: gray;
+      font-size: 16px;
+      font-weight: 300;
+      display: none;
+    }
+
+    .swal2-popup .swal2-validationerror::before {
+      content: '!';
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: #ea7d7d;
+      color: #fff;
+      line-height: 24px;
+      text-align: center;
+      margin-right: 10px;
+    }
+
+    @supports (-ms-accelerator: true) {
+      .swal2-range input {
+        width: 100% !important;
+      }
+
+      .swal2-range output {
+        display: none;
+      }
+    }
+
+    @media all and (-ms-high-contrast: none),
+    (-ms-high-contrast: active) {
+      .swal2-range input {
+        width: 100% !important;
+      }
+
+      .swal2-range output {
+        display: none;
+      }
+    }
+
+    .swal2-icon {
+      width: 80px;
+      height: 80px;
+      border: 4px solid transparent;
+      border-radius: 50%;
+      margin: 20px auto 30px;
+      padding: 0;
+      position: relative;
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+      cursor: default;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .swal2-icon.swal2-error {
+      border-color: #f27474;
+    }
+
+    .swal2-icon.swal2-error .swal2-x-mark {
+      position: relative;
+      display: block;
+    }
+
+    .swal2-icon.swal2-error [class^='swal2-x-mark-line'] {
+      position: absolute;
+      height: 5px;
+      width: 47px;
+      background-color: #f27474;
+      display: block;
+      top: 37px;
+      border-radius: 2px;
+    }
+
+    .swal2-icon.swal2-error [class^='swal2-x-mark-line'][class$='left'] {
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      left: 17px;
+    }
+
+    .swal2-icon.swal2-error [class^='swal2-x-mark-line'][class$='right'] {
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      right: 16px;
+    }
+
+    .swal2-icon.swal2-warning {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #f8bb86;
+      border-color: #facea8;
+      font-size: 60px;
+      line-height: 80px;
+      text-align: center;
+    }
+
+    .swal2-icon.swal2-info {
+      font-family: 'Open Sans', sans-serif;
+      color: #3fc3ee;
+      border-color: #9de0f6;
+      font-size: 60px;
+      line-height: 80px;
+      text-align: center;
+    }
+
+    .swal2-icon.swal2-question {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #87adbd;
+      border-color: #c9dae1;
+      font-size: 60px;
+      line-height: 80px;
+      text-align: center;
+    }
+
+    .swal2-icon.swal2-success {
+      border-color: #a5dc86;
+    }
+
+    .swal2-icon.swal2-success [class^='swal2-success-circular-line'] {
+      border-radius: 50%;
+      position: absolute;
+      width: 60px;
+      height: 120px;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .swal2-icon.swal2-success [class^='swal2-success-circular-line'][class$='left'] {
+      border-radius: 120px 0 0 120px;
+      top: -7px;
+      left: -33px;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      -webkit-transform-origin: 60px 60px;
+      transform-origin: 60px 60px;
+    }
+
+    .swal2-icon.swal2-success [class^='swal2-success-circular-line'][class$='right'] {
+      border-radius: 0 120px 120px 0;
+      top: -11px;
+      left: 30px;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      -webkit-transform-origin: 0 60px;
+      transform-origin: 0 60px;
+    }
+
+    .swal2-icon.swal2-success .swal2-success-ring {
+      width: 80px;
+      height: 80px;
+      border: 4px solid rgba(165, 220, 134, 0.2);
+      border-radius: 50%;
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+      position: absolute;
+      left: -4px;
+      top: -4px;
+      z-index: 2;
+    }
+
+    .swal2-icon.swal2-success .swal2-success-fix {
+      width: 7px;
+      height: 90px;
+      position: absolute;
+      left: 28px;
+      top: 8px;
+      z-index: 1;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+
+    .swal2-icon.swal2-success [class^='swal2-success-line'] {
+      height: 5px;
+      background-color: #a5dc86;
+      display: block;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 2;
+    }
+
+    .swal2-icon.swal2-success [class^='swal2-success-line'][class$='tip'] {
+      width: 25px;
+      left: 14px;
+      top: 46px;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .swal2-icon.swal2-success [class^='swal2-success-line'][class$='long'] {
+      width: 47px;
+      right: 8px;
+      top: 38px;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+
+    .swal2-progresssteps {
+      font-weight: 600;
+      margin: 0 0 20px;
+      padding: 0;
+    }
+
+    .swal2-progresssteps li {
+      display: inline-block;
+      position: relative;
+    }
+
+    .swal2-progresssteps .swal2-progresscircle {
+      background: #3085d6;
+      border-radius: 2em;
+      color: #fff;
+      height: 2em;
+      line-height: 2em;
+      text-align: center;
+      width: 2em;
+      z-index: 20;
+    }
+
+    .swal2-progresssteps .swal2-progresscircle:first-child {
+      margin-left: 0;
+    }
+
+    .swal2-progresssteps .swal2-progresscircle:last-child {
+      margin-right: 0;
+    }
+
+    .swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep {
+      background: #3085d6;
+    }
+
+    .swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep~.swal2-progresscircle {
+      background: #add8e6;
+    }
+
+    .swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep~.swal2-progressline {
+      background: #add8e6;
+    }
+
+    .swal2-progresssteps .swal2-progressline {
+      background: #3085d6;
+      height: .4em;
+      margin: 0 -1px;
+      z-index: 10;
+    }
+
+    [class^='swal2'] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    @-webkit-keyframes showSweetToast {
+      0% {
+        -webkit-transform: translateY(-10px) rotateZ(2deg);
+        transform: translateY(-10px) rotateZ(2deg);
+        opacity: 0;
+      }
+
+      33% {
+        -webkit-transform: translateY(0) rotateZ(-2deg);
+        transform: translateY(0) rotateZ(-2deg);
+        opacity: .5;
+      }
+
+      66% {
+        -webkit-transform: translateY(5px) rotateZ(2deg);
+        transform: translateY(5px) rotateZ(2deg);
+        opacity: .7;
+      }
+
+      100% {
+        -webkit-transform: translateY(0) rotateZ(0);
+        transform: translateY(0) rotateZ(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes showSweetToast {
+      0% {
+        -webkit-transform: translateY(-10px) rotateZ(2deg);
+        transform: translateY(-10px) rotateZ(2deg);
+        opacity: 0;
+      }
+
+      33% {
+        -webkit-transform: translateY(0) rotateZ(-2deg);
+        transform: translateY(0) rotateZ(-2deg);
+        opacity: .5;
+      }
+
+      66% {
+        -webkit-transform: translateY(5px) rotateZ(2deg);
+        transform: translateY(5px) rotateZ(2deg);
+        opacity: .7;
+      }
+
+      100% {
+        -webkit-transform: translateY(0) rotateZ(0);
+        transform: translateY(0) rotateZ(0);
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes hideSweetToast {
+      0% {
+        opacity: 1;
+      }
+
+      33% {
+        opacity: .5;
+      }
+
+      100% {
+        -webkit-transform: rotateZ(1deg);
+        transform: rotateZ(1deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes hideSweetToast {
+      0% {
+        opacity: 1;
+      }
+
+      33% {
+        opacity: .5;
+      }
+
+      100% {
+        -webkit-transform: rotateZ(1deg);
+        transform: rotateZ(1deg);
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes showSweetAlert {
+      0% {
+        -webkit-transform: scale(0.7);
+        transform: scale(0.7);
+      }
+
+      45% {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+      }
+
+      80% {
+        -webkit-transform: scale(0.95);
+        transform: scale(0.95);
+      }
+
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    @keyframes showSweetAlert {
+      0% {
+        -webkit-transform: scale(0.7);
+        transform: scale(0.7);
+      }
+
+      45% {
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+      }
+
+      80% {
+        -webkit-transform: scale(0.95);
+        transform: scale(0.95);
+      }
+
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    @-webkit-keyframes hideSweetAlert {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes hideSweetAlert {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .swal2-show {
+      -webkit-animation: showSweetAlert .3s;
+      animation: showSweetAlert .3s;
+    }
+
+    .swal2-show.swal2-toast {
+      -webkit-animation: showSweetToast .5s;
+      animation: showSweetToast .5s;
+    }
+
+    .swal2-show.swal2-noanimation {
+      -webkit-animation: none;
+      animation: none;
+    }
+
+    .swal2-hide {
+      -webkit-animation: hideSweetAlert .15s forwards;
+      animation: hideSweetAlert .15s forwards;
+    }
+
+    .swal2-hide.swal2-toast {
+      -webkit-animation: hideSweetToast .2s forwards;
+      animation: hideSweetToast .2s forwards;
+    }
+
+    .swal2-hide.swal2-noanimation {
+      -webkit-animation: none;
+      animation: none;
+    }
+
+    @-webkit-keyframes animate-success-tip {
+      0% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+      }
+
+      54% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+      }
+
+      70% {
+        width: 50px;
+        left: -8px;
+        top: 37px;
+      }
+
+      84% {
+        width: 17px;
+        left: 21px;
+        top: 48px;
+      }
+
+      100% {
+        width: 25px;
+        left: 14px;
+        top: 45px;
+      }
+    }
+
+    @keyframes animate-success-tip {
+      0% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+      }
+
+      54% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+      }
+
+      70% {
+        width: 50px;
+        left: -8px;
+        top: 37px;
+      }
+
+      84% {
+        width: 17px;
+        left: 21px;
+        top: 48px;
+      }
+
+      100% {
+        width: 25px;
+        left: 14px;
+        top: 45px;
+      }
+    }
+
+    @-webkit-keyframes animate-success-long {
+      0% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+      }
+
+      65% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+      }
+
+      84% {
+        width: 55px;
+        right: 0;
+        top: 35px;
+      }
+
+      100% {
+        width: 47px;
+        right: 8px;
+        top: 38px;
+      }
+    }
+
+    @keyframes animate-success-long {
+      0% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+      }
+
+      65% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+      }
+
+      84% {
+        width: 55px;
+        right: 0;
+        top: 35px;
+      }
+
+      100% {
+        width: 47px;
+        right: 8px;
+        top: 38px;
+      }
+    }
+
+    @-webkit-keyframes animate-toast-success-tip {
+      0% {
+        width: 0;
+        left: 1px;
+        top: 9px;
+      }
+
+      54% {
+        width: 0;
+        left: 1px;
+        top: 9px;
+      }
+
+      70% {
+        width: 24px;
+        left: -4px;
+        top: 17px;
+      }
+
+      84% {
+        width: 8px;
+        left: 10px;
+        top: 20px;
+      }
+
+      100% {
+        width: 12px;
+        left: 3px;
+        top: 18px;
+      }
+    }
+
+    @keyframes animate-toast-success-tip {
+      0% {
+        width: 0;
+        left: 1px;
+        top: 9px;
+      }
+
+      54% {
+        width: 0;
+        left: 1px;
+        top: 9px;
+      }
+
+      70% {
+        width: 24px;
+        left: -4px;
+        top: 17px;
+      }
+
+      84% {
+        width: 8px;
+        left: 10px;
+        top: 20px;
+      }
+
+      100% {
+        width: 12px;
+        left: 3px;
+        top: 18px;
+      }
+    }
+
+    @-webkit-keyframes animate-toast-success-long {
+      0% {
+        width: 0;
+        right: 22px;
+        top: 26px;
+      }
+
+      65% {
+        width: 0;
+        right: 22px;
+        top: 26px;
+      }
+
+      84% {
+        width: 26px;
+        right: 0;
+        top: 15px;
+      }
+
+      100% {
+        width: 22px;
+        right: 3px;
+        top: 15px;
+      }
+    }
+
+    @keyframes animate-toast-success-long {
+      0% {
+        width: 0;
+        right: 22px;
+        top: 26px;
+      }
+
+      65% {
+        width: 0;
+        right: 22px;
+        top: 26px;
+      }
+
+      84% {
+        width: 26px;
+        right: 0;
+        top: 15px;
+      }
+
+      100% {
+        width: 22px;
+        right: 3px;
+        top: 15px;
+      }
+    }
+
+    @-webkit-keyframes rotatePlaceholder {
+      0% {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+
+      5% {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+
+      12% {
+        -webkit-transform: rotate(-405deg);
+        transform: rotate(-405deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(-405deg);
+        transform: rotate(-405deg);
+      }
+    }
+
+    @keyframes rotatePlaceholder {
+      0% {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+
+      5% {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+
+      12% {
+        -webkit-transform: rotate(-405deg);
+        transform: rotate(-405deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(-405deg);
+        transform: rotate(-405deg);
+      }
+    }
+
+    .swal2-animate-success-line-tip {
+      -webkit-animation: animate-success-tip .75s;
+      animation: animate-success-tip .75s;
+    }
+
+    .swal2-animate-success-line-long {
+      -webkit-animation: animate-success-long .75s;
+      animation: animate-success-long .75s;
+    }
+
+    .swal2-success.swal2-animate-success-icon .swal2-success-circular-line-right {
+      -webkit-animation: rotatePlaceholder 4.25s ease-in;
+      animation: rotatePlaceholder 4.25s ease-in;
+    }
+
+    @-webkit-keyframes animate-error-icon {
+      0% {
+        -webkit-transform: rotateX(100deg);
+        transform: rotateX(100deg);
+        opacity: 0;
+      }
+
+      100% {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes animate-error-icon {
+      0% {
+        -webkit-transform: rotateX(100deg);
+        transform: rotateX(100deg);
+        opacity: 0;
+      }
+
+      100% {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        opacity: 1;
+      }
+    }
+
+    .swal2-animate-error-icon {
+      -webkit-animation: animate-error-icon .5s;
+      animation: animate-error-icon .5s;
+    }
+
+    @-webkit-keyframes animate-x-mark {
+      0% {
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+        margin-top: 26px;
+        opacity: 0;
+      }
+
+      50% {
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+        margin-top: 26px;
+        opacity: 0;
+      }
+
+      80% {
+        -webkit-transform: scale(1.15);
+        transform: scale(1.15);
+        margin-top: -6px;
+      }
+
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        margin-top: 0;
+        opacity: 1;
+      }
+    }
+
+    @keyframes animate-x-mark {
+      0% {
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+        margin-top: 26px;
+        opacity: 0;
+      }
+
+      50% {
+        -webkit-transform: scale(0.4);
+        transform: scale(0.4);
+        margin-top: 26px;
+        opacity: 0;
+      }
+
+      80% {
+        -webkit-transform: scale(1.15);
+        transform: scale(1.15);
+        margin-top: -6px;
+      }
+
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        margin-top: 0;
+        opacity: 1;
+      }
+    }
+
+    .swal2-animate-x-mark {
+      -webkit-animation: animate-x-mark .5s;
+      animation: animate-x-mark .5s;
+    }
+
+    @-webkit-keyframes rotate-loading {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes rotate-loading {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+
+ 
+      <div id="chatbot" onclick="toggleChat()">
+        <div id="chat-icon">
+          💬
+        </div>
+      </div>
+
+      <div id="chat-window" class="hidden-chat">
+        <div id="chat-header">
+          <div id="chat-title">Chat with CPGRAMS</div>
+          <div id="chat-status">We are online!</div>
+        </div>
+        <div id="chat-messages">
+          <div class="message">Welcome to the chat 👋 How can I help you?</div>
+        </div>
+        <input type="text" id="user-input" placeholder="Enter your message..." />
+        <div id="send-button">➤</div>
+      </div>
+
+    <div class="topbar">
+      <div class="container-fluid clearfix">
+        <div class="tophead_left">
+          <ul>
+            <li class="gov">
+              <span class="lang-hin">भारत सरकार </span>
+              <span>Government of India</span>
+            </li>
+            <li class="ministry">
+              <span class="lang-hin">कार्मिक, लोक शिकायत और पेंशन मंत्रालय</span>
+              <span>Ministry of Personnel, Public Grievances &amp; Pensions</span>
+            </li>
+          </ul>
+        </div>
+        <div class="tophead_right">
+          <ul class="top_row flex-row">
+            <li>
+              <a href="https://pgportal.gov.in/" class="loginlinks">
+                <img src="./CPGRAMS-Home_files/ico_home.png" alt="Home"><span class="hidden-sm-down">Home</span>
+              </a>
+
+            </li>
+            <li><a href="https://pgportal.gov.in/Home/ContactUs" class="loginlinks"><img
+                  src="./CPGRAMS-Home_files/ico_contact.png" alt="Contact"><span class="hidden-sm-down">Contact
+                  Us</span></a></li>
+            <li><a href="https://pgportal.gov.in/Home/AboutUs" class="loginlinks"><img
+                  src="./CPGRAMS-Home_files/ico_about.png" alt="About"><span class="hidden-sm-down">About Us</span></a>
+            </li>
+            <li><a href="https://pgportal.gov.in/Home/Faq" class="loginlinks"><img
+                  src="./CPGRAMS-Home_files/ico_help.png" alt="Help"><span class="hidden-sm-down">FAQs/Help</span></a>
+            </li>
+            <li><a target="_blank" href="https://pgportal.gov.in/Sitemap" class="loginlinks"><img
+                  src="./CPGRAMS-Home_files/sitemap.png" alt="calendar icon"><span class="hidden-sm-down">Site
+                  Map</span></a></li>
+            <li><a target="_blank" href="https://pgportal.gov.in/Home/Preview/SG9saWRheVllYXIyMDI0LnBkZg%3d%3d"
+                class="loginlinks"><img src="./CPGRAMS-Home_files/ico_calendar.png" alt="calendar icon"><span
+                  class="hidden-sm-down">2024 Holiday List</span></a></li>
+
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="head">
+      <div class="container-fluid clearfix">
+        <div class="d-flex justify-content-between">
+          <div class="logo" style="width: 400px">
+            <a href="https://pgportal.gov.in/"><img src="./CPGRAMS-Home_files/logo.png" alt="CPGRAMS Logo"></a>
+          </div>
+          <div class="title-main">
+
+
+            <h1>CPGRAMS</h1>
+            <span>Centralized Public Grievance Redress And Monitoring System</span>
+
+          </div>
+          <div class="swachh">
+            <img src="./CPGRAMS-Home_files/swachha.png" alt="swachha">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-navbar bg-dark">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark  d-flex justify-content-between">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon">&nbsp;</span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="https://pgportal.gov.in/#" id="navbarDropdown2" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="./CPGRAMS-Home_files/ico_view.png" alt="Nodal">View Status
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <a class="dropdown-item" href="https://pgportal.gov.in/Status">Grievance Status</a>
+                  <a class="dropdown-item" href="https://pgportal.gov.in/Appeal/Status">Appeal Status</a>
+                </ul>
+              </li>
+
+
+
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="https://pgportal.gov.in/#" id="navbarDropdown2" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="./CPGRAMS-Home_files/ico_nodal.png" alt="Nodal">Nodal PG Officers
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <a class="dropdown-item" href="https://pgportal.gov.in/Home/NodalPgOfficers">Central Government</a>
+                  <a class="dropdown-item" href="https://pgportal.gov.in/Home/NodalPgOfficersState">State Government</a>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="https://pgportal.gov.in/#" id="navbarDropdown3" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="./CPGRAMS-Home_files/ico_redress.png" alt="Redress">Redress Process
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+
+                  <a class="dropdown-item" href="https://pgportal.gov.in/Home/ProcessFlow">Redress Process Flow</a>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="https://pgportal.gov.in/#" id="navbarDropdown4" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="./CPGRAMS-Home_files/ico_grievance.png" alt="Grievance">Grievance
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                  <a class="dropdown-item" href="https://pgportal.gov.in/Home/LodgeGrievance">Lodge Public Grievance</a>
+                  <a id="pensionGrievanceLink" class="dropdown-item">Lodge Pension Grievance</a>
+                  <a class="dropdown-item" href="https://pgportal.gov.in/Status">View Status</a>
+                  <a class="dropdown-item" href="https://pgportal.gov.in/Reminder">Reminder Clarification</a>
+                  <a class="dropdown-item"
+                    href="https://pgportal.gov.in/status/Index/F2A735FA35FCA11528479B9308348C17">Rate Grievance</a>
+
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://pgportal.gov.in/Home/NodalAuthorityForAppeal"><i class="fa fa-users"
+                    aria-hidden="true"></i>Nodal Authority for Appeal<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+
+                <a target="_blank" download="CPGRAMS-mobile-app" class="nav-link"
+                  href="https://pgportal.gov.in/Mobile-app/app-release.apk">
+                  <img width="15" height="20" src="./CPGRAMS-Home_files/mobile.png" alt="Mobile App"> Mobile App
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+
+          </div>
+          <span class="text-white mr-2">
+            Language :
+          </span>
+
+          <div class="lang dropdown mr-2">
+            <a id="dropdownToggle" class="nav-link dropdown-toggle" href="https://pgportal.gov.in/#"
+              data-toggle="dropdown">English</a>
+            <div class="dropdown-menu dropdown-menu col-sm-2" aria-labelledby="dropdown09">
+              <a id="en" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/en">English</a>
+              <a id="hi" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/hi">हिंदी (Hindi)</a>
+              <a id="gu" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/gu">ગુજરાતી (Gujarati)</a>
+              <a id="mr" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/mr">मराठी (Marathi)</a>
+              <a id="bn" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/bn">বাংলা (Bangala)</a>
+              <a id="te" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/te">తెలుగు (Telugu)</a>
+              <a id="as" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/as">অসমীয়া (Assamese)</a>
+              <a id="or" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/or">ଓଡିଆ (Odia)</a>
+              <a id="ta" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/ta">தமிழ் (Tamil)</a>
+              <a id="ml" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/ml">മലയാളം (Malayalam)</a>
+              <a id="ur" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/ur"> (Urdu) اردو</a>
+              <a id="sd" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/sd">Sindhi</a>
+              <a id="br" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/br">बोडो (Bodo)</a>
+              <a id="ko" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/ko">कोंकणी (Konkani)</a>
+              <a id="ne" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/ne">नेपाली (Nepali)</a>
+              <a id="mn" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/mn">Manipuri</a>
+              <a id="pa" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/pa">ਪੰਜਾਬੀ (Punjabi)</a>
+              <a id="kn" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/kn">ಕನ್ನಡ (Kannada)</a>
+              <a id="da" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/da">डोगरी (Dogri)</a>
+              <a id="mt" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/mt">मैथिली (Maithili)</a>
+              <a id="ks" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/ks"> کشمیر (Kashmiri)</a>
+              <a id="sa" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/sa">संस्कृत (Sanskrit)</a>
+              <a id="st" class="dropdown-item" href="https://pgportal.gov.in/Culture/Index/st">ᱥᱟᱱᱛᱟᱲᱤ (Santhali)</a>
+            </div>
+          </div>
+          <div class="signIn">
+            <a class="btn btn-signIn" href="https://pgportal.gov.in/Signin">
+              <img src="./CPGRAMS-Home_files/signIn.png" alt="SignIn">
+              Sign In
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="container-fluid">
+
+
+
+
+
+
+
+
+        <div id="demo" class="carousel carousel-fade pointer-event" data-ride="carousel" data-interval="7000">
+          <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class=""></li>
+            <li data-target="#demo" data-slide-to="1" class=""></li>
+            <li data-target="#demo" data-slide-to="2" class="active"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
+            <li data-target="#demo" data-slide-to="4"></li>
+            <li data-target="#demo" data-slide-to="5"></li>
+            <li data-target="#demo" data-slide-to="6"></li>
+
+          </ul>
+          <div class="carousel-inner">
+            <div class="carousel-item">
+              <img src="./CPGRAMS-Home_files/baner-cpgrams_1.jpg" alt="Banner 1">
+            </div>
+            <div class="carousel-item">
+              <img src="./CPGRAMS-Home_files/baner-cpgrams_2.jpg" alt="Banner 2">
+            </div>
+            <div class="carousel-item active">
+              <img src="./CPGRAMS-Home_files/baner-cpgrams_3.jpg" alt="Banner 3">
+            </div>
+            <div class="carousel-item">
+              <img src="./CPGRAMS-Home_files/baner-cpgrams_4.jpg" alt="Banner 4">
+            </div>
+            <div class="carousel-item">
+              <img src="./CPGRAMS-Home_files/baner-cpgrams_5.jpg" alt="Banner 5">
+            </div>
+            <div class="carousel-item">
+              <img src="./CPGRAMS-Home_files/baner-cpgrams_6.jpg" alt="Banner 6">
+            </div>
+            <div class="carousel-item">
+              <img src="./CPGRAMS-Home_files/baner-cpgrams_7.jpg" alt="Banner 7">
+            </div>
+
+          </div>
+          <a class="carousel-control-prev" href="https://pgportal.gov.in/#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="https://pgportal.gov.in/#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+
+        <!--<div id="demo1" class="carousel slide heighlights mt-10" data-ride="carousel" data-interval="5000">
+
+    <div class="carousel-inner">
+
+        <div class="carousel-item active" style="background: #80c8ea;">
+           <div class="row">
+            <div class="col-md-4">
+                <div class="innerText">
+                    <h2>88</h2>
+                    <p>Ministry/Departments</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="innerText">
+                    <h2>88</h2>
+                    <p>Ministry/Departments</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="innerText">
+                    <h2>88</h2>
+                    <p>Ministry/Departments</p>
+                </div>
+            </div>
+           </div>
+        </div>
+        <div class="carousel-item" style=" background: #f3cf9b;">
+            <div class="row">
+            <div class="col-md-4">
+                <div class="innerText">
+                    <h2>88</h2>
+                    <p>Ministry/Departments</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="innerText">
+                    <h2>88</h2>
+                    <p>Ministry/Departments</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="innerText">
+                    <h2>88</h2>
+                    <p>Ministry/Departments</p>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#demo1" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo1" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>-->
+        <!--<section class="heighlights">
+    <marquee>
+        <ul>
+            <li><a href="">88 Ministry/Departments of central Government and 37 States/UTs are Onboarded to receive online Grievances</a><span>|</span></li>
+            <li><a href="">About 58000 subordinate offices of the Ministry/Department/State/UTs are Mapped to redress grievance Online</a><span>|</span></li>
+            <li><a href="">Portal supports bi-lingual (Hindi and English) access</a><span>|</span></li>
+            <li><a href="">Grievance text can be written in and Unicode language<span>|</span></li>
+            <li><a href="">Average Disposal rate in CPGRAMS is ___ %</a><span>|</span></li>
+            <li><a href="">Average grievance disposal time is _______ days</a></li>
+        </ul>
+    </marquee>
+</section>-->
+
+        <div class="aboutSection">
+          <div class="container-fluid">
+            <div class="col-md-12">
+              <h3 class="emailMsg">Any Grievance sent by email will not be attended to / entertained. Please lodge your
+                grievance on this portal. </h3>
+            </div>
+            <div class="row innerSection">
+              <div class="col-md-8 p-0">
+                <div class="">
+                  <h2>ABOUT CPGRAMS</h2>
+                  <div class="text-justify font-size-14 pt-1 pb-0">
+
+                    <p class="text-justify">
+                      Centralised Public Grievance Redress and Monitoring System (CPGRAMS) is an online platform
+                      available to the citizens 24x7 to lodge their grievances to the public authorities on any subject
+                      related to service delivery. It is a single portal connected to all the Ministries/Departments of
+                      Government of India and States. Every Ministry and States have role-based access to this system.
+                      CPGRAMS is also accessible to the citizens through standalone mobile application downloadable
+                      through Google Play store and mobile application integrated with UMANG.
+                    </p>
+                    <p class="text-justify">
+                      The status of the grievance filed in CPGRAMS can be tracked with the unique registration ID
+                      provided at the time of registration of the complainant. CPGRAMS also provides appeal facility to
+                      the citizens if they are not satisfied with the resolution by the Grievance Officer. After closure
+                      of grievance if the complainant is not satisfied with the resolution, he/she can provide feedback.
+                      If the rating is ‘Poor’ the option to file an appeal is enabled. The status of the Appeal can also
+                      be tracked by the petitioner with the grievance registration number.
+                    </p>
+
+                    <ul class="mt-2 list-style-none pb-0">
+                      <span class="font-bold text-info"><i class="fa fa-info-circle"></i>&nbsp;Issues which are not
+                        taken up for redress :</span>
+                      <li class="ml-3"><i class="fa fa-caret-right"></i> &nbsp;RTI Matters</li>
+                      <li class="ml-3"><i class="fa fa-caret-right"></i> &nbsp;Court related / Subjudice matters</li>
+                      <li class="ml-3"><i class="fa fa-caret-right"></i> &nbsp;Religious matters</li>
+                      <li class="ml-3"><i class="fa fa-caret-right"></i> &nbsp;Suggestions</li>
+                      <li class="ml-3"><i class="fa fa-caret-right"></i> &nbsp;Grievances of Government employees
+                        concerning their service matters including disciplinary proceedings etc. unless the aggrieved
+                        employee has already exhausted the prescribed channels keeping in view the <a target="_blank"
+                          href="https://pgportal.gov.in/Home/Preview/RE9QVF9PTV9PblNlcnZpY2VNYXR0ZXJzKEVuZ2xpc2gpMzEtMDgtMjAxMy1Fc3R0LUEtSUlJLUVuZy5wZGY%3d">DoPT
+                          OM No. 11013/08/2013-Estt.(A-III) dated 31.08.2015</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="contBox text-justify border border-danger mr-0" style="display: none;">
+                  <ul>
+                    <li><i class="fa fa-caret-right"></i> &nbsp; Your valuable feedback on quality of grievance disposal
+                      will help us to improve the service</li>
+                    <li><i class="fa fa-caret-right"></i> &nbsp; Any Grievance sent by email will not be attended to /
+                      entertained. Please lodge your grievance on this portal.</li>
+                  </ul>
+                  <p class="mb-0"><span style="color: #0c4bFF; font-weight: 900;">Request </span> : All grievances
+                    relating to State Governments / Union Territory Administrations and Government of NCT Region of
+                    Delhi, are to be redressed by the State/ UT/ NCT Government concerned. Citizens are advised to take
+                    up matter regarding pendency of their grievance directly with the State Government concerned. </p>
+                </div>
+                <div class="container-fluid"><strong>Note :</strong> <br>
+                  <ol class="ml-3">
+                    <li> If you have not got a satifactory redress of your grievance within a reasonable period of
+                      time,relating to <a href="https://dpg.gov.in/AuthPages/OgCovered.aspx"
+                        target="_blank">Ministries/Departments and Organisations</a> under the purview of Directorate of
+                      Public Grievances(DPG), Cabinet Secretariat, GOI, you may seek help of DPG in resolution. Please
+                      <a href="https://dpg.gov.in/Default.aspx" target="_blank">click here</a> for details. </li>
+                    <li>Government is not charging fee from the public for filing grievances. All money being paid by
+                      the public for filing grievance is going only to M/s CSC only</li>
+                  </ol>
+                </div>
+
+
+
+              </div>
+              <div class="col-md-4">
+                <h2>WHAT'S NEW</h2>
+                <div class="whatsNew">
+                  <ul>
+                    <li> <a
+                        href="https://pgportal.gov.in/Home/Preview/U3RyZW5ndGhlbmluZ29mTWFjaGluZXJ5Zm9yUmVkcmVzc2Fsb2ZQdWJsaWNHcmlldmFuY2VDUEdSQU1TLnBkZg%3d%3d"
+                        target="_blank"><span><b>27</b> <em>July 2022 </em></span> Strengthening of Machinery for
+                        Redressal of Public Grievance (CPGRAMS) (PDF - 1.05 MB)</a></li>
+                    <li> <a
+                        href="https://pgportal.gov.in/Home/Preview/Q29tcHJlaGVuc2l2ZUd1aWRlbGluZXNGb3JIYW5kbGluZ1RoZVB1YmxpY0dyaWV2YW5jZXMucGRm"
+                        target="_blank"><span><b>23</b> <em>August 2024 </em></span> Comprehensive Guidelines for
+                        Handling the Public Grievances (PDF - 0.25 MB)</a></li>
+
+
+
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="boxSection">
+          <div class="row innerSection">
+            <div class="col-md-4">
+              <div class="box box2">
+                <a href="https://pgportal.gov.in/Signin">
+                  <img src="./CPGRAMS-Home_files/register.png" alt="Register/Login">
+                  <p><span>Register / Login</span></p>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="box box1">
+                <a href="https://pgportal.gov.in/Status">
+                  <img src="./CPGRAMS-Home_files/status.png" alt="Status">
+                  <p><span>View Status</span></p>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="box box3">
+                <a href="https://pgportal.gov.in/Home/ContactUs">
+                  <img src="./CPGRAMS-Home_files/contact.png" alt="Contact">
+                  <p><span>Contact Us</span></p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+    <footer>
+      <div class="footer-top">
+
+        <div class="copyright">
+          <div class="text-center my-2">
+            <a href="https://www.facebook.com/DARPGIndia/" target="_blank"><img src="./CPGRAMS-Home_files/f.png"
+                width="30"></a>
+            <a href="https://twitter.com/DARPG_GoI" target="_blank"><img src="./CPGRAMS-Home_files/x.png" width="30"
+                class="mx-2"></a>
+            <a href="https://youtube.com/%40darpg5380?si=Z2Va_V5kGY1dX_yb" target="_blank"><img
+                src="./CPGRAMS-Home_files/yt.png" width="30"></a>
+          </div>
+          <div style="font-size: 15px"> This site is designed, developed &amp; hosted by National Informatics Centre,
+            Ministry of Electronics &amp; IT (MeitY), Government of India and Content owned by Department of
+            Administrative Reforms &amp; Public Grievances.</div>
+
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="mb-1" style="color: #f3f19c;font-size: 15px">
+          Portal is Compatible with all major Browsers like Google Chrome, Mozilla Firefox, Microsoft Edge, Safari etc.
+        </p>
+        <p class="mb-3" style="color: #f3f19c;font-size: 15px">Best Viewed in 1440 x 900 resolution</p>
+        <div class="ad_image content">
+          <a class="gov_logo" target="_blank" href="https://gandhi.gov.in/"><img
+              src="./CPGRAMS-Home_files/gandhi-150.jpg" alt=""></a><br>
+          <a class="indgov_logo" target="_blank" href="https://digitalindiaawards.gov.in/"><img
+              src="./CPGRAMS-Home_files/digi-awards.jpg" alt=""></a>
+          <a class="digi_logo" target="_blank" href="http://goidirectory.nic.in/"><img
+              src="./CPGRAMS-Home_files/web-directory.jpg" alt="digital-India"></a><br>
+          <a class="digi_logo" target="_blank" href="http://www.makeinindia.com/"><img
+              src="./CPGRAMS-Home_files/made-in-india.jpg" alt="nic"></a><br>
+          <a class="digi_logo" target="_blank" href="https://www.digitalindia.gov.in/"><img
+              src="./CPGRAMS-Home_files/digital-india-logo.jpg" alt="digital-India"></a><br>
+          <a class="indgov_logo" target="_blank" href="https://www.india.gov.in/"><img
+              src="./CPGRAMS-Home_files/india-gov-logo.jpg" alt=""></a><br>
+          <a class="digi_logo" target="_blank" href="https://www.nic.in/"><img src="./CPGRAMS-Home_files/niclogo.jpg"
+              alt="nic"></a>
+        </div>
+        <p>
+          <span class="disc my-2">
+            <a href="https://pgportal.gov.in/Home/Disclaimer">
+              Disclaimer
+            </a>
+            <a href="https://pgportal.gov.in/Home/WebsitePolicies">Website Policies</a>
+            <a href="https://darpg.gov.in/en/web-information-manager" target="_blank">Web Information Manager</a>
+            <a>Version 7.0.01092019.0.0, Copyright © 2024</a>
+            <a>Last Updated On: 27-09-2024</a>
+            <a>
+              Total Visitors : <span class="text-red">3519212</span> <i class="text-sm">(since 19-01-2024)</i>
+            </a>
+          </span>
+        </p>
+
+      </div>
+    </footer>
+  </div>
+  <script src="./CPGRAMS-Home_files/layout"></script>
+
+
+
+  <script type="text/javascript">
+    var loginUrl = '/Signin/Logout';
+    var extendMethodUrl = '/Signin/ExtendSession';
+    $(document).ready(function () {
+
+      $('input:password').bind("cut copy paste", function (e) {
+        e.preventDefault();
+      });
+
+      var isLoggedIn = "True".toLowerCase() === "true" ? false : true;
+      if (isLoggedIn) {
+        SessionTimeout.schedulePopup();
+      } else {
+        setTimeout("location.reload();", 600000);
+      }
+
+      $("#pensionGrievanceLink,#pensionGrievanceLink-1,#pensionGrievanceLink-2").click(function () {
+        setTimeout(function () {
+          swal({
+            title:
+              "You are being redirected to Grievance System of Department of Pension & Pensioner's Welfare",
+            text:
+              "आपको पेंशन और पेंशनभोगी कल्याण विभाग की शिकायत प्रणाली पर पुनर्निर्देशित किया जा रहा है।",
+            type: "warning",
+            showCancelButton: true,
+            reverseButtons: true,
+            allowOutsideClick: false
+          }).then(function (result) {
+            console.log(result);
+            if (result.value) {
+              window.open("http://pgportal.gov.in/pension/", "_blank");
+            }
+          });
+        }, 500);
+      });
+    });
+
+    window.SessionTimeout = (function () {
+      var timeLeft, popupTimer, countDownTimer;
+      var stopTimers = function () {
+        window.clearTimeout(popupTimer);
+        window.clearTimeout(countDownTimer);
+      };
+      var updateCountDown = function () {
+        var min = Math.floor(timeLeft / 60);
+        var sec = timeLeft % 60;
+        if (sec < 10)
+          sec = "0" + sec;
+        document.getElementById("CountDownHolder").innerHTML = min + ":" + sec;
+
+        if (timeLeft > 0) {
+          timeLeft--;
+          countDownTimer = window.setTimeout(updateCountDown, 1000);
+        } else {
+          document.location = loginUrl;
+        }
+      };
+      var showPopup = function () {
+        $("#divPopupTimeOut").show();
+        timeLeft = 120;
+        updateCountDown();
+      };
+      var schedulePopup = function () {
+        $("#divPopupTimeOut").hide();
+        stopTimers();
+        popupTimer = window.setTimeout(showPopup, 1620000);
+      };
+      var hidePopup = function () {
+        $("#divPopupTimeOut").hide();
+      };
+      var sendKeepAlive = function () {
+        stopTimers();
+        $("#divPopupTimeOut").hide();
+        $.ajax({
+          type: "GET",
+          url: extendMethodUrl,
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function () {
+            SessionTimeout.schedulePopup();
+          },
+          error: function () {
+          }
+        });
+      };
+      return {
+        schedulePopup: schedulePopup,
+        sendKeepAlive: sendKeepAlive,
+        hidePopup: hidePopup,
+        stopTimers: stopTimers
+      };
+
+    })();
+
+  </script>
+
+
+  <div id="divPopupTimeOut"
+    style="display: none; text-align: left; margin-top: 15px; width: 280px !important; position: fixed; top: 40px; right: 0; z-index: 9999; height: 165px;"
+    class="alert alert-warning">
+    <div class="row">
+      <div class="col">
+        <div class="row" style="margin-top: 10px; margin-left: 10px;">
+          Your session is about to expire!
+          <br>
+          <span id="CountDownHolder"></span>
+          <br>
+          Click OK to continue your session.
+        </div>
+        <hr>
+        <div class="text-center" style="text-align: center; margin-top: 22px;">
+          <button type="button" class="btn btn-default btn-sm" onclick="SessionTimeout.sendKeepAlive();">OK</button>
+          <button type="button" class="btn btn-default btn-sm" onclick="SessionTimeout.hidePopup();">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>function toggleChat() {
+  var chatWindow = document.getElementById('chat-window');
+  console.log("clicked")
+  // Toggle the 'hidden' class to show or hide the chat window
+  if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+    chatWindow.style.display = 'flex';     // Show the chat window
+  } else {
+    chatWindow.style.display = 'none';     // Hide the chat window
+  }
+
+}</script>
+
+</html>
